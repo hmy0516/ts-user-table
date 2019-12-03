@@ -46,8 +46,6 @@ class UserModal extends PureComponent<UserFormProps, IUserModalState>{
 
     //模态框确定时 进行相应的操作
     okHandler = (e: any) => {
-        console.log("e", e);
-        console.log("this.props", this.props);
         if (e) e.stopPropagation();
         const {
             onOk,
@@ -59,18 +57,15 @@ class UserModal extends PureComponent<UserFormProps, IUserModalState>{
                 const { sex, birthday } = values;
                 values.sex = sex === "man" ? "男" : "女";
                 values.birthday = moment(birthday).format("YYYY/MM/DD")
-                console.log("sex.birthday", sex, birthday);
                 onOk({ key, values });
                 this.hideModalHandler(e);
             }
         });
     };
     render() {
-        console.log("Modal", this.props);
         const { children } = this.props;
         const { getFieldDecorator } = this.props.form;
         const { name, sex, job, birthday, hobby } = this.props.record;
-        console.log("hobby", hobby);
         const formItemLayout = {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 }

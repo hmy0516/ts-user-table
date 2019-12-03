@@ -63,12 +63,12 @@ class UserList extends PureComponent<{}, IUserListState> {
     };
 
     //编辑用户
-    editHandler = (key: any, values: any) => {
-        console.log("editHandler", key, values)
-        this.state.userList.filter(item => item.key !== key)
-        const { userList } = this.state;
+    editHandler = (values: any) => {
+        console.log("editHandlervalues", values)
+        const userList = this.state.userList.filter(item => item.key !== values.key);
+        console.log("editHandleruserList", userList)
         this.setState({
-            userList: [...userList, values]
+            userList: [...userList, values.values]
         })
 
     };
@@ -131,8 +131,6 @@ class UserList extends PureComponent<{}, IUserListState> {
                 render: (text: any, record: any) => (
 
                     <span>
-                        {console.log('record', record)}
-                        {console.log('text', text)}
                         <UserModal record={record} onOk={this.editHandler}>
                             <Button className="btn-table-edit" >编辑</Button>
                         </UserModal>
